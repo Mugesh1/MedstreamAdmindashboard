@@ -13,21 +13,20 @@
         <form [formGroup]="form">
             <div class="row">
                 <div class="section-b col">
-                    <input placeholder="Title" class="input" type="text" name="Search" matInput formControlName="name"
-                        maxlength="50" required>
-                    <mat-hint class="hintalign">{{form.get('name').value?.length || 0}}/50
+                    <input placeholder="Title" class="input" type="text" name="Search" matInput formControlName="title"
+                        maxlength="100" required>
+                    <mat-hint class="hintalign">{{form.get('title').value?.length || 0}}/50
                     </mat-hint>
-                    <mat-error *ngIf="submitted && form.get('name')?.errors?.required">{{'Name is
-                        required'}}</mat-error>
+                    <mat-error *ngIf="submitted && form.get('title')?.errors?.required">{{'Title is required'}}</mat-error>
                 </div>
             </div>
             <div class="row">
                 <div class="section-b col">
                     <input placeholder="URL of the Video" class="input" type="text" name="Search" matInput
-                        formControlName="name" maxlength="50" required>
-                    <mat-hint class="hintalign">{{form.get('name').value?.length || 0}}/50
-                    </mat-hint>
-                    <mat-error *ngIf="submitted && form.get('name')?.errors?.required">{{'Name is
+                        formControlName="url"  required>
+                    <!-- <mat-hint class="hintalign">{{form.get('url').value?.length || 0}}/50
+                    </mat-hint> -->
+                    <mat-error *ngIf="submitted && form.get('url')?.errors?.required">{{'URL is
                         required'}}</mat-error>
                 </div>
             </div>
@@ -53,12 +52,12 @@
                         <div id="images">
                             <div id="main-img-holder">
                                 <img id="main-img" [src]="mainImageSrc" alt="main-img"
-                                    style="width:'310px';height:125px;border-radius: 10px;" />
-                                <div class="upload-icon-container" *ngIf="images?.length < 4">
+                                    style="width:250px;height:120px;border-radius: 10px;margin-top:5px" />
+                                <div class="upload-icon-container">
                                     <label for="image-upload-input" class="upload-icon-label">
                                         <span class="cursor-pointer"><i style="color: white;"
                                                 class="fa fa-upload fa-2x"></i>
-                                            <p style="color: white;margin: 10px;">Upload Thumbnail</p>
+                                            <p style="color: white;margin: 10px;"  *ngIf="mainImageSrc.includes('noImg.png')">Upload Thumbnail</p>
                                         </span>
                                         <input type="file" accept="image/*" (change)="onFileChange($event)"
                                             #imageUploadInput id="image-upload-input" style="display:none">
@@ -72,66 +71,54 @@
             </div>
             <div class="row">
                 <div class="section-b col-4">
-                    <mat-select style="margin: 0  !important;" placeholder="Category" formControlName="operator"
-                        multiple>
-                        <mat-option *ngFor="let row of city" [value]="row">{{row}}</mat-option>
+                    <mat-select style="margin: 0  !important;" placeholder="Category" formControlName="category">
+                        <mat-option *ngFor="let row of url" [value]="row">{{row}}</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="submitted && form.get('operator')?.errors?.required">{{'Operator is
-                        required'}}</mat-error>
+                    <mat-error *ngIf="submitted && form.get('category')?.errors?.required">{{'Category is required'}}</mat-error>
                 </div>
                 <div class="section-b col-4">
-                    <mat-select style="margin: 0  !important;" placeholder="Sub Category" formControlName="operator"
+                    <mat-select style="margin: 0  !important;" placeholder="Sub Category" formControlName="subcategory"
                         multiple>
-                        <mat-option *ngFor="let row of city" [value]="row">{{row}}</mat-option>
+                        <mat-option *ngFor="let row of url" [value]="row">{{row}}</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="submitted && form.get('operator')?.errors?.required">{{'Operator is
-                        required'}}</mat-error>
+                    <mat-error *ngIf="submitted && form.get('subcategory')?.errors?.required">{{'Sub category is required'}}</mat-error>
                 </div>
                 <div class="section-b col-4">
                     <input  style="margin: 0  !important;" placeholder="PPT File" class="input" type="text" name="Search" matInput
-                        formControlName="name" maxlength="50" required> 
-                    <mat-error *ngIf="submitted && form.get('name')?.errors?.required">{{'Name is
-                        required'}}</mat-error>
+                        formControlName="ppt" maxlength="50" required> 
+                    <mat-error *ngIf="submitted && form.get('ppt')?.errors?.required">{{'PPT is required'}}</mat-error>
                 </div>
             </div>
-            <h4 style="padding:0px !important ;margin:25px 0px 0px 0px !important;font-weight: 600;color: #f24c44;">{{'Institute
-                Detail'}}</h4>
+            <h4 style="padding:0px !important ;margin:25px 0px 0px 0px !important;font-weight: 600;color: #f24c44;">{{'Institute Detail'}}</h4>
             <hr class="new4">
             <div class="row">
                 <div class="section-b col-6">
-                    <mat-select style="margin: 0  !important;" placeholder="Name" formControlName="operator"
-                        multiple>
-                        <mat-option *ngFor="let row of city" [value]="row">{{row}}</mat-option>
+                    <mat-select style="margin: 0  !important;" placeholder="Name" formControlName="institution">
+                        <mat-option *ngFor="let row of url" [value]="row">{{row}}</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="submitted && form.get('operator')?.errors?.required">{{'Operator is
-                        required'}}</mat-error>
+                    <mat-error *ngIf="submitted && form.get('institution')?.errors?.required">{{'Institution is required'}}</mat-error>
                 </div>
                 <div class="col-6"></div>
             </div>
 
-            <h4 style="padding:0px !important ;margin:25px 0px 0px 0px!important;font-weight: 600;color: #f24c44;">{{'Update
-                Detail'}}</h4>
+            <h4 style="padding:0px !important ;margin:25px 0px 0px 0px!important;font-weight: 600;color: #f24c44;">{{'Update Detail'}}</h4>
             <hr class="new4">
             <div class="row">
                 <div class="section-b col-4">
                     <input  style="margin: 0  !important;" placeholder="Date" class="input" type="text" name="Search" matInput
-                        formControlName="name" maxlength="50" required> 
-                    <mat-error *ngIf="submitted && form.get('name')?.errors?.required">{{'Name is
-                        required'}}</mat-error>
+                        formControlName="date"  required> 
+                    <mat-error *ngIf="submitted && form.get('date')?.errors?.required">{{'Date is required'}}</mat-error>
                 </div>
                 <div class="section-b col-4">
                     <input  style="margin: 0  !important;" placeholder="Time" class="input" type="text" name="Search" matInput
-                        formControlName="name" maxlength="50" required> 
-                    <mat-error *ngIf="submitted && form.get('name')?.errors?.required">{{'Name is
-                        required'}}</mat-error>
+                        formControlName="time" maxlength="50" required> 
+                    <mat-error *ngIf="submitted && form.get('time')?.errors?.required">{{'Time is required'}}</mat-error>
                 </div>
                 <div class="section-b col-4">
-                    <mat-select style="margin: 0  !important;" placeholder="Case of the Week" formControlName="operator"
-                        multiple>
-                        <mat-option *ngFor="let row of city" [value]="row">{{row}}</mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="submitted && form.get('operator')?.errors?.required">{{'Operator is
-                        required'}}</mat-error>
+                   
+                    <input  style="margin: 0  !important;" placeholder="Duration" class="input" type="text" name="Search" matInput
+                        formControlName="duration"  required> 
+                    <mat-error *ngIf="submitted && form.get('duration')?.errors?.required">{{'Duration is required'}}</mat-error>
                 </div>
             </div>
             <div class="disflex mt-5" *ngIf="!view">
@@ -144,3 +131,4 @@
         </form>
     </div>
 </div>
+

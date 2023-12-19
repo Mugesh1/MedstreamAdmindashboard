@@ -17,13 +17,13 @@ export class AddLiveCasesComponent implements OnInit {
   changetheproductName: any
   @ViewChild('fileInput') fileInput: ElementRef;
   videoSelect = false;
-  mainImageSrc: string;
   apiMainImageSrc: string;
   images: Array<string> = [];
   apiMainImages: Array<string> = [];
   video: string;
   apiVideoUrl: string;
   submitted = false;
+  mainImageSrc: string;
   noImage = "assets/noImg.png"
   types: string[] = [
     "Male",
@@ -54,7 +54,7 @@ export class AddLiveCasesComponent implements OnInit {
   color = [
     "Gold", "Oxidised Silver", "Rose Gold", "Silver"
   ]
-  city = []
+  url = ['test']
   collections = [
     "Diwali", "New Year", "Mother's Day", "Christmas", "Raksha Bandhan", "Eid", "Holi", "Durga pooja", ""
   ]
@@ -117,93 +117,47 @@ export class AddLiveCasesComponent implements OnInit {
   allFiles: any;
   onFileChange(event: any) {
     const files = event.target.files;
-    this.allFiles = event.target.files
     if (files.length > 0) {
       const file = files[0];
       if (file) {
-        this.handleImageVideoUpload(file);
+        this.handleImageUpload(file);
       }
     }
   }
-  handleImageVideoUpload(file: File) {
+  
+  handleImageUpload(file: File) {
     const reader = new FileReader();
-    // if (!this.uploadEnabled) {
-    //   return;
-    // }
-
-    // if (this.images.length >= 4 && !this.video) {
-    //   console.log("You can only upload four images and one video.");
-    //   this.uploadEnabled = false;
-    //   return;
-    // }
-
-    // if (this.images.length === 4 && this.video) {
-    //   this.uploadEnabled = false;
-    // }
-
-    if (this.allFiles && this.allFiles[0]) {
-      const numberOfFiles = this.allFiles.length;
-      for (let i = 0; i < numberOfFiles; i++) {
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-          if (e.target.result.includes('image/')) {
-            this.images.push(e.target.result);
-            this.mainImageSrc = this.images[0];
-          } else {
-            // const videoElement = document.createElement('video');
-            // videoElement.preload = 'metadata';
-            // videoElement.onloadedmetadata = () => {
-            //   window.URL.revokeObjectURL(videoElement.src);
-            //   if (videoElement.duration < 5 || videoElement.duration > 30) {
-            //     this.snackbar.openFromComponent(SnackbarComponent, {
-            //       data:"Video duration should be between 10 and 30 seconds.",
-            //     });
-            //     return;
-            //   }
-            this.video = e.target.result;
-            //   this.videoSelect=true;
-            // };
-            // videoElement.src = URL.createObjectURL(file);
-          }
-
-        }
-        reader.readAsDataURL(this.allFiles[i]);
+    reader.onload = (e: any) => {
+      if (e.target.result.includes('image/')) {
+        this.mainImageSrc = e.target.result;
+      } else {
+        // Handle non-image file (if needed)
       }
-    }
+    };
+    reader.readAsDataURL(file);
   }
-
-  selectImage(image: string) {
-    this.mainImageSrc = image;
-    this.videoSelect = false;
+  
+  removeImage() {
+    this.mainImageSrc = null;
+    // If you have additional logic to handle removal, add it here
   }
-  selectVideo(video: string) {
-    this.videoSelect = true;
-  }
-
-  removeImage(index: number) {
-    this.images.splice(index, 1);
-    if (!this.images.length) {
-      this.mainImageSrc = this.noImage;
-    }
-  }
-
-  removeVideo() {
-    this.video = "";
-  }
-
+  
   clearFileInput() {
     this.fileInput.nativeElement.value = '';
   }
-
+  
   initializeForm() {
     this.form = this.formBuilder.group({
-      name: ['', Validators.required], //bc name 
-      city: ['', Validators.required],
-      country: ['', Validators.required],
-      location: ['', Validators.required],
+      title: ['', Validators.required], //bc name 
+      url: ['', Validators.required],
       description: ['', Validators.required],
-      address: ['', Validators.required],
-      operator: ['', Validators.required],
+      category: ['', Validators.required],
+      subcategory: ['', Validators.required],
+      ppt: ['', Validators.required],
+      institution: ['', Validators.required],
+      date: ['', Validators.required],
+      time: ['', Validators.required],
+      duration: ['', Validators.required],
     })
   }
 

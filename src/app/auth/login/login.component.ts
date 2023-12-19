@@ -32,7 +32,8 @@ export class LoginComponent implements OnInit {
         password: this.form.controls['password'].value
       }
       this.api.apiPostCall(payload, 'login').subscribe(data => {
-        console.log(data)
+        localStorage.setItem('token',data.data.accessToken)
+        this.router.navigate(['/liveCases/list'])
       })
     }
   }

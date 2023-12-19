@@ -14,7 +14,7 @@ import { SnackbarComponent } from 'src/app/shared-module/snackbar/snackbar.compo
 })
 export class LiveListComponent  implements OnInit {
   dataSource = new MatTableDataSource<any>([]);
-  columnsToDisplay = ['s.no', 'firstName', 'lastName', 'email', 'last'];
+  columnsToDisplay = ['s.no', 'title', 'category', 'subCategory', 'inst','week','month','action'];
   selectedValue: any;
   selectedColourValue: any;
   selectedStockValue: any

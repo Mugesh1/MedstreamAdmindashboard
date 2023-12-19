@@ -285,6 +285,10 @@ table thead {
   padding: 15px;
   background: none !important;
 }
+.mdc-data-table__row:last-child .mdc-data-table__cell{
+  border-bottom: #111111  !important;
+  color: white !important;
+}
 
 .mat-mdc-unelevated-button.mat-primary {
   --mdc-filled-button-container-color: #0E1F53;

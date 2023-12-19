@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { LiveCasesComponent } from './live-cases/live-cases.component';
 
 const routes: Routes = [
-  // { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
-  { path: '', redirectTo: 'liveCases/list', pathMatch: 'full' },
-  // { path: 'auth', loadChildren: () => (import('./auth/auth.module')).then((m) => m.AuthModule) },
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+  // { path: '', redirectTo: 'liveCases/list', pathMatch: 'full' },
+  { path: 'auth', loadChildren: () => (import('./auth/auth.module')).then((m) => m.AuthModule) },
   { path: 'liveCases', loadChildren: () => (import('./live-cases/live-cases.module')).then((m) => m.LiveCasesModule) },
   { path: 'experts', loadChildren: () => (import('./experts/experts.module')).then((m) => m.ExpertsModule) },
   { path: 'allCases', loadChildren: () => (import('./all-cases/all-cases.module')).then((m) => m.AllCasesModule) },

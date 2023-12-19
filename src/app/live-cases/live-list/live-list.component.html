@@ -22,34 +22,56 @@
               <td mat-cell *matCellDef="let request">{{request._id}}</td>
           </ng-container>
 
-          <ng-container matColumnDef="firstName">
+          <ng-container matColumnDef="title">
               <th mat-header-cell *matHeaderCellDef>
-                  <span>First Name</span>
+                  <span>Title</span>
               </th>
-              <td mat-cell *matCellDef="let request">{{request.image}}</td>
+              <td mat-cell *matCellDef="let request">{{request.title}}</td>
           </ng-container>
 
-          <ng-container matColumnDef="lastName">
+          <ng-container matColumnDef="category">
               <th mat-header-cell *matHeaderCellDef>
-                  <span>Last Name</span>
+                  <span>Category</span>
               </th>
-              <td mat-cell *matCellDef="let request">{{request.colour.join(', ')}}</td>
+              <td mat-cell *matCellDef="let request">{{request.category}}</td>
           </ng-container>
 
-          <ng-container matColumnDef="email">
+          <ng-container matColumnDef="subCategory">
               <th mat-header-cell *matHeaderCellDef>
-                  <span>Email</span>
+                  <span>Sub Category</span>
               </th>
-              <td mat-cell *matCellDef="let request">{{request?.productName}}</td>
+              <td mat-cell *matCellDef="let request">{{request?.subCategory}}</td>
           </ng-container>
-          <ng-container matColumnDef="last">
+          <ng-container matColumnDef="inst">
               <th mat-header-cell *matHeaderCellDef>
-                  <span>Last Active</span>
-
+                  <span>Institution</span>
               </th>
-              <td mat-cell *matCellDef="let request">{{request.stock}}</td>
+              <td mat-cell *matCellDef="let request">{{request.institution}}</td>
           </ng-container>
-        
+          <ng-container matColumnDef="week">
+            <th mat-header-cell *matHeaderCellDef>
+                <span>Week No</span>
+            </th>
+            <td mat-cell *matCellDef="let request">{{request.duration}}</td>
+        </ng-container>
+        <ng-container matColumnDef="month">
+            <th mat-header-cell *matHeaderCellDef>
+                <span>Month</span>
+            </th>
+            <td mat-cell *matCellDef="let request">{{request.time}}</td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th class="last" mat-header-cell *matHeaderCellDef>
+                <span>Action</span>
+            </th>
+            <td mat-cell *matCellDef="let request">
+                <div class="displayicon">
+                    <mat-icon style="font-size: 18px;cursor:pointer" matTooltip="Edit" (click)="edit('edit',request._id)">edit</mat-icon>
+                    <mat-icon style="font-size: 18px;cursor:pointer" matTooltip="Delete" (click)="delete(request._id)">delete</mat-icon>
+                    <mat-icon style="font-size: 18px;cursor:pointer" matTooltip="View" (click)="edit('view',request._id)">visibility</mat-icon>
+                </div>
+            </td>
+        </ng-container>
           <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
           <tr mat-row *matRowDef="let request; columns: columnsToDisplay"></tr>
 

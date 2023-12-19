@@ -14,17 +14,9 @@ export class HeadersComponent implements OnInit {
 
   constructor(private api: ApiService) { }
   ngOnInit(): void {
-    this.getCustomerList();
   }
 
-  getCustomerList(): void {
-    this.api.apiGetCall('Customer/getAllCustomer').subscribe((data) => {
-      this.customerList = data.data;
-      if (!data.data?.length) {
-        this.noData = true;
-      }
-    })
-  }
+ 
   getHeadClass(): string {
     let styleClass = '';
     if (this.collapsed && this.screenWidth > 768) {
